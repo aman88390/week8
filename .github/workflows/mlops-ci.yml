@@ -14,10 +14,10 @@ jobs:
 
     steps:
     - name: Checkout repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: "3.10"
 
@@ -40,14 +40,14 @@ jobs:
       run: |
         dvc repro
 
-    - name: Upload model as artifact
-      uses: actions/upload-artifact@v3
+    - name: Upload trained model
+      uses: actions/upload-artifact@v4
       with:
         name: trained-model
         path: model.pkl
 
     - name: Upload poisoned dataset
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: poisoned-data
         path: data/iris_poisoned.csv

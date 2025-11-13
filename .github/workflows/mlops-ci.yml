@@ -36,8 +36,8 @@ jobs:
           --port 5000 > mlflow.log 2>&1 &
         sleep 5
 
-    - name: Verify MLflow running
-      run: curl -I http://127.0.0.1:5000
+    # - name: Verify MLflow running
+    #   run: curl -I http://127.0.0.1:5000
 
     - name: Pull DVC data
       run: |

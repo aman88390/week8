@@ -27,9 +27,6 @@ jobs:
         pip install -r requirements.txt
         pip install dvc[gs] joblib
 
-    - name: Initialize DVC
-      run: dvc init --no-scm
-
     - name: Pull DVC data (if remote exists)
       run: |
         if dvc remote list; then

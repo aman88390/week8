@@ -1,0 +1,46 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python scripts/prepare_data.py
+    deps:
+    - path: scripts/prepare_data.py
+      hash: md5
+      md5: e54d64e356d30d16747156b685c281d8
+      size: 274
+    outs:
+    - path: data/iris_clean.csv
+      hash: md5
+      md5: 4d301abed5efe50eccda350cde38e0eb
+      size: 2777
+  poison:
+    cmd: python scripts/poison_iris.py --rate 0.05
+    deps:
+    - path: data/iris_clean.csv
+      hash: md5
+      md5: 4d301abed5efe50eccda350cde38e0eb
+      size: 2777
+    - path: scripts/poison_iris.py
+      hash: md5
+      md5: 7a5cc27a6ae06de23ab5584cca3fa7bf
+      size: 869
+    outs:
+    - path: data/iris_poisoned.csv
+      hash: md5
+      md5: 7c5def42bcf104bb3fe0cfcbbee3a9cc
+      size: 3182
+  train:
+    cmd: python src/train.py --data data/iris_poisoned.csv
+    deps:
+    - path: data/iris_poisoned.csv
+      hash: md5
+      md5: 7c5def42bcf104bb3fe0cfcbbee3a9cc
+      size: 3182
+    - path: src/train.py
+      hash: md5
+      md5: d3f68ed3d7d33f30d43978e5475c4825
+      size: 1010
+    outs:
+    - path: model.pkl
+      hash: md5
+      md5: ba0a572db2deb21f615f0e30b9c27e33
+      size: 1327

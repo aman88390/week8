@@ -1,4 +1,3 @@
-
 name: MLOps CI Pipeline
 
 on:
@@ -49,6 +48,12 @@ jobs:
     - name: Run DVC pipeline (MLflow enabled)
       run: dvc repro
 
+    - name: Upload poisoned dataset
+      uses: actions/upload-artifact@v4
+      with:
+        name: poisoned-data
+        path: data/iris_poisoned.csv
+
     - name: Upload trained model
       uses: actions/upload-artifact@v4
       with:
@@ -60,4 +65,3 @@ jobs:
       with:
         name: mlflow-artifacts
         path: mlruns/
-

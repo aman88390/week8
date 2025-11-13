@@ -6,7 +6,7 @@ from sklearn.metrics import accuracy_score
 from utils import load_dataset
 
 # MLflow running locally on port 5000
-mlflow.set_tracking_uri("http://0.0.0.0:5000")
+mlflow.set_tracking_uri("http://127.0.0.1:5000")
 mlflow.set_experiment("iris_poisoning")
 
 def train(data_path):

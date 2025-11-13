@@ -1,0 +1,23 @@
+stages:
+  prepare:
+    cmd: python scripts/prepare_data.py
+    deps:
+      - scripts/prepare_data.py
+    outs:
+      - data/iris_clean.csv
+
+  poison:
+    cmd: python scripts/poison_iris.py --rate ${poison.rate}
+    deps:
+      - scripts/poison_iris.py
+      - data/iris_clean.csv
+    outs:
+      - data/iris_poisoned.csv
+
+  train:
+    cmd: python src/train.py --data data/iris_poisoned.csv
+    deps:
+      - data/iris_poisoned.csv
+      - src/train.py
+    outs:
+      - model.pkl

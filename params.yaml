@@ -1,0 +1,5 @@
+poison:
+  rate: 0.05
+train:
+  test_split: 0.3
+  random_state: 42

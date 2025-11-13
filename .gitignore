@@ -1,0 +1,6 @@
+.env/
+__pycache__/
+mlruns/
+*.pkl
+*.h5
+*.pt
